@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garage Invoice Management System</title>
+    <!-- Outfit Font for Modern and Premium Look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ==================== LOGIN SCREEN ==================== -->
+    <div id="login-screen" class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <h2>G-Invoice</h2>
+                <p>Garage Management Suite</p>
+            </div>
+            
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required autocomplete="off" placeholder="Enter username">
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="Enter password">
+                </div>
+                <div id="login-error" class="error-message"></div>
+                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            </form>
+            
+            <div class="login-footer">
+                <span>Default: admin / admin123</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN APPLICATION ==================== -->
+    <div id="main-app" class="app-container hidden">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="logo-icon-small">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <h3>G-Invoice</h3>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="#" class="menu-item active" data-tab="dashboard">
+                    <span class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></span>
+                    Dashboard
+                </a>
+                <a href="#" class="menu-item" data-tab="customers">
+                    <span class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                    Customers
+                </a>
+                <a href="#" class="menu-item" data-tab="vehicles">
+                    <span class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="22" height="13" rx="2" ry="2"/><path d="M5 16v4M19 16v4M5 8h14M8 12h8"/></svg></span>
+                    Vehicles
+                </a>
+                <a href="#" class="menu-item" data-tab="employees">
+                    <span class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg></span>
+                    Employees
+                </a>
+                <a href="#" class="menu-item" data-tab="services">
+                    <span class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+                    Services Catalog
+                </a>
+                <a href="#" class="menu-item" data-tab="parts">
+                    <span class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>
+                    Inventory (Parts)
+                </a>
+                <a href="#" class="menu-item" data-tab="invoices">
+                    <span class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+                    Billing & Invoices
+                </a>
+            </nav>
+
+            <div class="sidebar-user">
+                <div class="user-avatar">AD</div>
+                <div class="user-details">
+                    <span class="user-name">Administrator</span>
+                    <span class="user-role">Super Admin</span>
+                </div>
+                <button id="logout-btn" class="logout-icon-btn" title="Log Out">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Workspace Area -->
+        <main class="main-content">
+            <!-- Topbar Header -->
+            <header class="topbar">
+                <h1 id="page-title">Dashboard Overview</h1>
+                <div class="topbar-right">
+                    <div class="date-display" id="current-date">Wed, July 15, 2026</div>
+                </div>
+            </header>
+
+            <!-- ==================== TABS CONTENT ==================== -->
+            <div class="workspace-body">
+                
+                <!-- 1. DASHBOARD TAB -->
+                <div id="tab-dashboard" class="tab-pane active">
+                    <!-- Metric Cards -->
+                    <div class="metrics-grid">
+                        <div class="metric-card bg-gradient-blue">
+                            <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                            <div class="card-info">
+                                <h3>Total Revenue</h3>
+                                <p class="value" id="metric-revenue">Rs. 0.00</p>
+                                <span class="label">Total Paid Invoices</span>
+                            </div>
+                        </div>
+                        <div class="metric-card bg-gradient-purple">
+                            <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                            <div class="card-info">
+                                <h3>Total Invoices</h3>
+                                <p class="value" id="metric-invoices">0</p>
+                                <span class="label" id="metric-unpaid-invoices">0 Unpaid</span>
+                            </div>
+                        </div>
+                        <div class="metric-card bg-gradient-cyan">
+                            <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+                            <div class="card-info">
+                                <h3>Customers</h3>
+                                <p class="value" id="metric-customers">0</p>
+                                <span class="label" id="metric-vehicles">0 Vehicles Registered</span>
+                            </div>
+                        </div>
+                        <div class="metric-card bg-gradient-pink">
+                            <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+                            <div class="card-info">
+                                <h3>Active Parts</h3>
+                                <p class="value" id="metric-parts">0</p>
+                                <span class="label alert-highlight" id="metric-low-stock">0 Low Stock Alert</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Revenue & Analytical Charts Section -->
+                    <div class="dashboard-details-grid">
+                        <div class="panel">
+                            <div class="panel-header">
+                                <h3>Top Performing Services</h3>
+                                <span class="badge badge-info">By Popularity</span>
+                            </div>
+                            <div class="analytics-list" id="top-services-list">
+                                <!-- Preseeded/dynamic services statistics -->
+                            </div>
+                        </div>
+
+                        <div class="panel">
+                            <div class="panel-header">
+                                <h3>Most Utilized Spare Parts</h3>
+                                <span class="badge badge-warning">By Sales Volume</span>
+                            </div>
+                            <div class="analytics-list" id="top-parts-list">
+                                <!-- Preseeded/dynamic parts statistics -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Admin Maintenance panel -->
+                    <div class="panel admin-maintenance">
+                        <div class="panel-header">
+                            <h3>Administrative Operations</h3>
+                        </div>
+                        <div class="admin-buttons-row">
+                            <button id="btn-export-db" class="btn btn-secondary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                Export Database (JSON)
+                            </button>
+                            <label for="import-db-file" class="btn btn-secondary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                Import Database (JSON)
+                            </label>
+                            <input type="file" id="import-db-file" accept=".json" class="hidden">
+                            <button id="btn-reset-db" class="btn btn-danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                                Reset System (Clear & Preseed)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. CUSTOMERS TAB -->
+                <div id="tab-customers" class="tab-pane">
+                    <div class="action-bar">
+                        <div class="search-box">
+                            <input type="text" id="search-customer" placeholder="Search by name, phone or email...">
+                        </div>
+                        <button id="btn-add-customer" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            Add Customer
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Full Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Vehicles</th>
+                                    <th class="actions-col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customers-table-body">
+                                <!-- Dynamically loaded customers -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination" id="customers-pagination">
+                        <!-- Pagination controls -->
+                    </div>
+                </div>
+
+                <!-- 3. VEHICLES TAB -->
+                <div id="tab-vehicles" class="tab-pane">
+                    <div class="action-bar">
+                        <div class="search-box">
+                            <input type="text" id="search-vehicle" placeholder="Search by vehicle number, model, brand...">
+                        </div>
+                        <button id="btn-add-vehicle" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            Register Vehicle
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Vehicle Number</th>
+                                    <th>Brand / Model</th>
+                                    <th>Year</th>
+                                    <th>Color</th>
+                                    <th>Engine Number</th>
+                                    <th>Owner (Customer)</th>
+                                    <th class="actions-col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vehicles-table-body">
+                                <!-- Dynamically loaded vehicles -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination" id="vehicles-pagination">
+                        <!-- Pagination controls -->
+                    </div>
+                </div>
+
+                <!-- 4. EMPLOYEES TAB -->
+                <div id="tab-employees" class="tab-pane">
+                    <div class="action-bar">
+                        <div class="search-box">
+                            <input type="text" id="search-employee" placeholder="Search by name, designation, phone...">
+                        </div>
+                        <button id="btn-add-employee" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            Add Employee
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Employee Name</th>
+                                    <th>Designation</th>
+                                    <th>Salary (Monthly)</th>
+                                    <th>Phone</th>
+                                    <th class="actions-col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employees-table-body">
+                                <!-- Dynamically loaded employees -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination" id="employees-pagination">
+                        <!-- Pagination controls -->
+                    </div>
+                </div>
+
+                <!-- 5. SERVICES TAB -->
+                <div id="tab-services" class="tab-pane">
+                    <div class="action-bar">
+                        <div class="search-box">
+                            <input type="text" id="search-service" placeholder="Search by service name...">
+                        </div>
+                        <button id="btn-add-service" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            Add Service Catalog
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Service Name</th>
+                                    <th>Description</th>
+                                    <th>Labour Cost (Rs.)</th>
+                                    <th class="actions-col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="services-table-body">
+                                <!-- Dynamically loaded services -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination" id="services-pagination">
+                        <!-- Pagination controls -->
+                    </div>
+                </div>
+
+                <!-- 6. PARTS TAB -->
+                <div id="tab-parts" class="tab-pane">
+                    <div class="action-bar">
+                        <div class="search-box">
+                            <input type="text" id="search-part" placeholder="Search parts inventory...">
+                        </div>
+                        <button id="btn-add-part" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            Add New Part
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Part Name</th>
+                                    <th>Unit Price (Rs.)</th>
+                                    <th>In Stock Qty</th>
+                                    <th>Status</th>
+                                    <th class="actions-col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="parts-table-body">
+                                <!-- Dynamically loaded parts -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination" id="parts-pagination">
+                        <!-- Pagination controls -->
+                    </div>
+                </div>
+
+                <!-- 7. INVOICES TAB -->
+                <div id="tab-invoices" class="tab-pane">
+                    <div class="action-bar">
+                        <div class="search-box">
+                            <input type="text" id="search-invoice" placeholder="Search by invoice #, vehicle, customer...">
+                        </div>
+                        <div class="filter-box">
+                            <select id="filter-invoice-status">
+                                <option value="all">All Invoices</option>
+                                <option value="paid">Paid</option>
+                                <option value="pending">Pending</option>
+                            </select>
+                        </div>
+                        <button id="btn-create-invoice" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            Create Invoice
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Invoice #</th>
+                                    <th>Date</th>
+                                    <th>Customer Details</th>
+                                    <th>Vehicle Number</th>
+                                    <th>Grand Total</th>
+                                    <th>Payment Status</th>
+                                    <th class="actions-col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="invoices-table-body">
+                                <!-- Dynamically loaded invoices -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination" id="invoices-pagination">
+                        <!-- Pagination controls -->
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ==================== DIALOG MODALS ==================== -->
+    
+    <!-- Customer Modal -->
+    <div id="modal-customer" class="modal-overlay hidden">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="customer-modal-title">Add Customer</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="customer-form">
+                <input type="hidden" id="customer-id">
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="c-name">Full Name</label>
+                        <input type="text" id="c-name" required placeholder="e.g. John Doe">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="c-phone">Phone Number</label>
+                        <input type="text" id="c-phone" required placeholder="e.g. 9876543210">
+                    </div>
+                    <div class="input-group">
+                        <label for="c-email">Email Address</label>
+                        <input type="email" id="c-email" required placeholder="e.g. john@example.com">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="c-address">Home Address</label>
+                        <textarea id="c-address" required placeholder="e.g. Block A, New Delhi"></textarea>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary modal-close-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Customer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Vehicle Modal -->
+    <div id="modal-vehicle" class="modal-overlay hidden">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="vehicle-modal-title">Register Vehicle</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="vehicle-form">
+                <input type="hidden" id="vehicle-old-number">
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="v-number">Vehicle Registration Number</label>
+                        <input type="text" id="v-number" required placeholder="e.g. DL-3C-AB-1234">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="v-brand">Brand</label>
+                        <input type="text" id="v-brand" required placeholder="e.g. Maruti Suzuki">
+                    </div>
+                    <div class="input-group">
+                        <label for="v-model">Model</label>
+                        <input type="text" id="v-model" required placeholder="e.g. Swift">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="v-year">Year of Manufacture</label>
+                        <input type="number" id="v-year" required min="1950" max="2030" placeholder="e.g. 2022">
+                    </div>
+                    <div class="input-group">
+                        <label for="v-color">Color</label>
+                        <input type="text" id="v-color" required placeholder="e.g. White">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="v-engine">Engine Number</label>
+                        <input type="text" id="v-engine" required placeholder="e.g. ENG987654321">
+                    </div>
+                    <div class="input-group">
+                        <label for="v-owner">Owner (Customer)</label>
+                        <select id="v-owner" required>
+                            <!-- Dynamically loaded list of customers -->
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary modal-close-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Vehicle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Employee Modal -->
+    <div id="modal-employee" class="modal-overlay hidden">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="employee-modal-title">Add Employee</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="employee-form">
+                <input type="hidden" id="employee-id">
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="e-name">Employee Full Name</label>
+                        <input type="text" id="e-name" required placeholder="e.g. Robert Smith">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="e-designation">Designation</label>
+                        <input type="text" id="e-designation" required placeholder="e.g. Senior Mechanic">
+                    </div>
+                    <div class="input-group">
+                        <label for="e-salary">Monthly Salary (Rs.)</label>
+                        <input type="number" id="e-salary" required min="0" step="0.01" placeholder="e.g. 25000">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="e-phone">Phone Number</label>
+                        <input type="text" id="e-phone" required placeholder="e.g. 9876501234">
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary modal-close-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Employee</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Service Modal -->
+    <div id="modal-service" class="modal-overlay hidden">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="service-modal-title">Add Service Catalog</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="service-form">
+                <input type="hidden" id="service-id">
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="s-name">Service Name</label>
+                        <input type="text" id="s-name" required placeholder="e.g. Wheel Alignment">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="s-cost">Labour Cost (Rs.)</label>
+                        <input type="number" id="s-cost" required min="0" step="0.01" placeholder="e.g. 600">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="s-desc">Short Description</label>
+                        <input type="text" id="s-desc" required placeholder="e.g. Laser guided 4-wheel calibration">
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary modal-close-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Service</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Part Modal -->
+    <div id="modal-part" class="modal-overlay hidden">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="part-modal-title">Add New Part</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="part-form">
+                <input type="hidden" id="part-id">
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="p-name">Part Name</label>
+                        <input type="text" id="p-name" required placeholder="e.g. Brake Pads Set">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="p-price">Unit Price (Rs.)</label>
+                        <input type="number" id="p-price" required min="0" step="0.01" placeholder="e.g. 1200">
+                    </div>
+                    <div class="input-group">
+                        <label for="p-qty">Quantity in Stock</label>
+                        <input type="number" id="p-qty" required min="0" placeholder="e.g. 15">
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary modal-close-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Part</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Create Invoice Modal (Wizard style) -->
+    <div id="modal-invoice" class="modal-overlay hidden">
+        <div class="modal-box modal-box-large">
+            <div class="modal-header">
+                <h3>Create New Job Sheet / Invoice</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="invoice-form">
+                <div class="invoice-wizard-layout">
+                    <!-- Column 1: Customer & Vehicle Info -->
+                    <div class="wizard-col">
+                        <h4>Customer & Vehicle Selection</h4>
+                        
+                        <div class="input-group">
+                            <label for="inv-vehicle-select">Select Vehicle</label>
+                            <select id="inv-vehicle-select" required>
+                                <option value="">-- Choose Vehicle --</option>
+                                <!-- Loaded dynamically -->
+                            </select>
+                        </div>
+                        
+                        <!-- Read-only auto populated data -->
+                        <div class="invoice-summary-card">
+                            <h5>Client Details</h5>
+                            <p><strong>Name:</strong> <span id="inv-owner-name">-</span></p>
+                            <p><strong>Phone:</strong> <span id="inv-owner-phone">-</span></p>
+                            <p><strong>Brand/Model:</strong> <span id="inv-vehicle-details">-</span></p>
+                        </div>
+                        
+                        <h4>Billing Preferences</h4>
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="inv-discount">Discount (Rs.)</label>
+                                <input type="number" id="inv-discount" min="0" step="0.01" value="0">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="inv-status">Payment Status</label>
+                            <select id="inv-status" required>
+                                <option value="pending">Pending Checkout</option>
+                                <option value="paid">Paid / Settled</option>
+                            </select>
+                        </div>
+
+                        <div id="payment-details-section" class="hidden">
+                            <div class="input-group">
+                                <label for="inv-payment-mode">Payment Mode</label>
+                                <select id="inv-payment-mode">
+                                    <option value="1">Cash</option>
+                                    <option value="2">UPI (GPay/PhonePe)</option>
+                                    <option value="3">Credit Card</option>
+                                    <option value="4">Debit Card</option>
+                                    <option value="5">Net Banking</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="inv-payment-ref">Transaction reference #</label>
+                                <input type="text" id="inv-payment-ref" placeholder="Ref/UPI/Card approval #">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Services & Spare Parts items selection -->
+                    <div class="wizard-col border-left">
+                        <h4>Jobs performed (Max 5)</h4>
+                        <div class="services-selector-container">
+                            <div class="form-row align-end">
+                                <div class="input-group">
+                                    <label for="inv-service-select">Select Service</label>
+                                    <select id="inv-service-select">
+                                        <option value="">-- Add Service --</option>
+                                        <!-- Loaded dynamically -->
+                                    </select>
+                                </div>
+                                <button type="button" id="btn-add-service-to-invoice" class="btn btn-secondary">Add</button>
+                            </div>
+                            
+                            <div class="selected-items-list" id="invoice-selected-services">
+                                <!-- Selected services display here -->
+                            </div>
+                        </div>
+
+                        <h4>Spare Parts replacement (Max 5)</h4>
+                        <div class="parts-selector-container">
+                            <div class="form-row align-end">
+                                <div class="input-group flex-2">
+                                    <label for="inv-part-select">Select Part</label>
+                                    <select id="inv-part-select">
+                                        <option value="">-- Add Spare Part --</option>
+                                        <!-- Loaded dynamically -->
+                                    </select>
+                                </div>
+                                <div class="input-group flex-1">
+                                    <label for="inv-part-qty">Qty</label>
+                                    <input type="number" id="inv-part-qty" min="1" value="1">
+                                </div>
+                                <button type="button" id="btn-add-part-to-invoice" class="btn btn-secondary">Add</button>
+                            </div>
+                            <div id="part-stock-warning" class="error-message hidden"></div>
+                            
+                            <div class="selected-items-list" id="invoice-selected-parts">
+                                <!-- Selected parts display here -->
+                            </div>
+                        </div>
+
+                        <!-- Calculations summary -->
+                        <div class="invoice-total-summary">
+                            <div class="summary-line">
+                                <span>Labour Charges:</span>
+                                <span id="summary-labour">Rs. 0.00</span>
+                            </div>
+                            <div class="summary-line">
+                                <span>Spare Parts Charges:</span>
+                                <span id="summary-parts">Rs. 0.00</span>
+                            </div>
+                            <div class="summary-line">
+                                <span>Subtotal:</span>
+                                <span id="summary-subtotal">Rs. 0.00</span>
+                            </div>
+                            <div class="summary-line text-discount">
+                                <span>Discount:</span>
+                                <span id="summary-discount">-Rs. 0.00</span>
+                            </div>
+                            <div class="summary-line">
+                                <span>GST (18%):</span>
+                                <span id="summary-gst">Rs. 0.00</span>
+                            </div>
+                            <div class="summary-line grand-total">
+                                <span>Grand Total:</span>
+                                <span id="summary-grand">Rs. 0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-actions border-top">
+                    <button type="button" class="btn btn-secondary modal-close-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Generate Invoice</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Invoice Detail / Receipt Modal -->
+    <div id="modal-invoice-receipt" class="modal-overlay hidden">
+        <div class="modal-box modal-receipt">
+            <div class="modal-header no-print">
+                <h3>Invoice Details</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            
+            <div class="receipt-card" id="receipt-printable-area">
+                <!-- Receipt details loaded dynamically -->
+            </div>
+
+            <div class="modal-actions border-top no-print">
+                <button type="button" class="btn btn-secondary modal-close-btn">Close</button>
+                <button type="button" id="btn-print-receipt" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                    Print Receipt
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
