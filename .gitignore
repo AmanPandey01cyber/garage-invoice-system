@@ -1,0 +1,9 @@
+# Compiled binaries
+*.exe
+*.o
+*.obj
+*.out
+
+# Database & local data files
+*.dat
+*_backup.dat
